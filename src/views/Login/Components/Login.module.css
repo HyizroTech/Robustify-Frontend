@@ -1,0 +1,28 @@
+.loginWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100vh;
+  background: linear-gradient(245deg, #73cadd -0.14%, #552875 102.72%);
+  padding: 0 3rem;
+}
+
+.loginIntro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: auto;
+  min-width: 50%;
+}
+
+.loginIntro > h1 {
+  font-family: "Inter";
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: normal;
+  background: linear-gradient(266deg, #274361 5.85%, #011013 124.11%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
