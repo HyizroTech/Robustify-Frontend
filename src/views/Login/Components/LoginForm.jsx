@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 // Styles
 import styles from "./LoginForm.module.css";
+import useValidateEmptyInputs from "../../../hooks/useValidateEmptyInputs";
 
 const LoginForm = () => {
   const [inputs, setInputs] = useState({
@@ -9,10 +10,18 @@ const LoginForm = () => {
     password: "",
   });
 
+  const { errors } = useValidateEmptyInputs(inputs);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs.username);
-    console.log(inputs.password);
+
+    console.log(errors);
+    if (Object.keys(errors).length === 0) {
+      console.log(inputs.username);
+      console.log(inputs.password);
+    } else {
+      console.log(errors);
+    }
   };
 
   return (
@@ -28,6 +37,7 @@ const LoginForm = () => {
             name="username"
             id="username"
             placeholder="example@email.com"
+            value={inputs.username}
             onChange={(e) =>
               setInputs({ ...inputs, [e.target.name]: e.target.value })
             }
@@ -40,6 +50,7 @@ const LoginForm = () => {
             name="password"
             id="password"
             placeholder="**********"
+            value={inputs.password}
             onChange={(e) =>
               setInputs({ ...inputs, [e.target.name]: e.target.value })
             }
