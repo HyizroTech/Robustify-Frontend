@@ -4,7 +4,7 @@ const HomePage = lazy(() => import("../views/Home/home.router"));
 
 export const MainRoutes = [
   {
-    path: "/home/*",
+    path: "/*",
     name: "home",
     component: HomePage,
   },

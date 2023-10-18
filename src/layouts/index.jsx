@@ -1,19 +1,25 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useMatch } from "react-router-dom";
 
 // Layouts
 import LoginLayout from "./login";
+import MainLayout from "./main";
 
 //Routes
 import { MainRoutes } from "../routers/main.router";
-import MainLayout from "./main";
+import { LoginRoutes } from "../routers";
+
+const isAuthRoute = () =>
+  !!LoginRoutes.find((route) => {
+    return useMatch(route.path);
+  });
 
 const Layout = () => {
-  const isAuth = false;
-  console.log("This is the Index Layout");
+  const location = useLocation();
+  const isAuthPath = isAuthRoute(location.pathname);
   return (
     <>
-      {isAuth ? (
+      {isAuthPath ? (
         <LoginLayout />
       ) : (
         <Routes>

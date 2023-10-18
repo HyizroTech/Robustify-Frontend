@@ -24,7 +24,6 @@ import {
 } from "@mui/icons-material";
 
 const SideBar = () => {
-  console.log("In the Main Layout");
   const navigate = useNavigate();
   const [openSublinks, setOpenSublinks] = useState({});
 
