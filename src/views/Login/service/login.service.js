@@ -10,7 +10,7 @@ export const LoginService = {
     });
     if (res.status === 200 && res?.data?.accessToken) {
       StorageService.setAuthKey(res?.data);
-      return res?.data?.id;
+      return res?.data?.roles;
     }
     return false;
   },

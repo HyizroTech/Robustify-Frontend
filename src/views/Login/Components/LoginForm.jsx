@@ -13,13 +13,12 @@ import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { setLoggedInId } = useContext(UserContext);
+  const { setUserRole } = useContext(UserContext);
 
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
   });
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const { errors } = useValidateEmptyInputs(inputs);
@@ -29,17 +28,14 @@ const LoginForm = () => {
 
     if (Object.keys(errors).length === 0) {
       try {
-        setLoading(true);
-        const logInId = await LoginService.login(
+        const logInRole = await LoginService.login(
           inputs.username,
           inputs.password
         );
-        setLoggedInId(logInId);
-        navigate("/");
+        setUserRole(logInRole);
+        navigate("/" + logInRole.toLowerCase());
       } catch (e) {
         setError("Invalid Credentials");
-      } finally {
-        setLoading(false);
       }
     } else {
       setError("Please Enter Required Fields");

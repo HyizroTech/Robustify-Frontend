@@ -88,7 +88,7 @@ const SideBar = () => {
       id: 7,
       text: "User Settings",
       icon: <SettingsOutlined />,
-      onclick: () => navigate(""),
+      onclick: () => navigate("/user-settings"),
     },
   ];
 

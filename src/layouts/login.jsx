@@ -1,7 +1,13 @@
+import { Suspense } from "react";
 import { LoginRoutes } from "../routers";
 import { Routes, Route } from "react-router-dom";
+import LoadingFallback from "../components/LoadingFallback";
 
-const Wrapper = ({ Component }) => <Component />;
+const Wrapper = ({ Component }) => (
+  <Suspense fallback={<LoadingFallback />}>
+    <Component />
+  </Suspense>
+);
 
 const LoginLayout = () => {
   return (
