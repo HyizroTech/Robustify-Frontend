@@ -13,7 +13,7 @@ import Logo from "../assets/Application-Logo.png";
 
 const Navbar = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ background: "#AABFE7" }}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <img

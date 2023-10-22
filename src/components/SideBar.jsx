@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+
+import { UserContext } from "../contexts/user.context";
 
 // Hooks
 import { useNavigate } from "react-router-dom";
@@ -21,11 +23,16 @@ import {
   ShowChartOutlined,
   PercentOutlined,
   SettingsOutlined,
+  AssignmentOutlined,
+  SentimentDissatisfiedOutlined,
 } from "@mui/icons-material";
 
 const SideBar = () => {
   const navigate = useNavigate();
   const [openSublinks, setOpenSublinks] = useState({});
+
+  const { userRole } = useContext(UserContext);
+  console.log(userRole);
 
   const toggleSublinks = (linkText) => {
     setOpenSublinks((prevOpenSublinks) => ({
@@ -34,7 +41,7 @@ const SideBar = () => {
     }));
   };
 
-  const SideBarLinks = [
+  const AdminSideBar = [
     {
       id: 1,
       text: "Dashboard",
@@ -88,14 +95,38 @@ const SideBar = () => {
       id: 7,
       text: "User Settings",
       icon: <SettingsOutlined />,
-      onclick: () => navigate("/user-settings"),
+      onclick: () => navigate("/admin/user-settings"),
     },
   ];
+
+  const EmployeeSideBar = [
+    {
+      id: 1,
+      text: "Tasks",
+      icon: <AssignmentOutlined />,
+      onclick: () => navigate(""),
+    },
+
+    {
+      id: 2,
+      text: "Complaints",
+      icon: <SentimentDissatisfiedOutlined />,
+      onclick: () => navigate(""),
+    },
+  ];
+
+  const SideBarLinks = userRole === "ADMIN" ? AdminSideBar : EmployeeSideBar;
 
   return (
     <Drawer
       variant="permanent"
-      sx={{ height: "100%", "& .MuiDrawer-paper": { position: "static" } }}
+      sx={{
+        height: "100%",
+        "& .MuiDrawer-paper": {
+          position: "static",
+          background: "linear-gradient(180deg, #A9BEE6 6.59%, #5D367F 127%);",
+        },
+      }}
     >
       <List
         sx={{
