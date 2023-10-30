@@ -42,7 +42,11 @@ const Layout = () => {
     } else {
       navigate(`/login`);
     }
-  }, [location.pathname, navigate, setCurrentUser, setUserRole]);
+
+    if (isLoggedIn && location.pathname === "/") {
+      navigate(`/${userRole.toLowerCase()}`);
+    }
+  }, [location.pathname, navigate, setCurrentUser, setUserRole, userRole]);
 
   const renderRoutes = (routes) => {
     return routes.map((route, index) => (
