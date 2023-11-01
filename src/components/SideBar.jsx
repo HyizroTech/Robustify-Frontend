@@ -32,7 +32,6 @@ const SideBar = () => {
   const [openSublinks, setOpenSublinks] = useState({});
 
   const { userRole } = useContext(UserContext);
-  console.log(userRole);
 
   const toggleSublinks = (linkText) => {
     setOpenSublinks((prevOpenSublinks) => ({
