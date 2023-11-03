@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 // Components
 import GeneralTable from "../../../../components/GeneralTable";
+import CreateUser from "./CreateUser";
 
 // Constant Variables
 import { UserSettingsCoulmns } from "../../../../constants/tableColumns.const";
@@ -11,10 +12,13 @@ import { UserSettingsServices } from "../services/users.service";
 
 // Contexts
 import { UserContext } from "../../../../contexts";
+import { useModal } from "../../../../contexts";
 
 const UserSettings = () => {
   const { currentUser } = useContext(UserContext);
   const [employees, setEmployees] = useState([]);
+
+  const { showModal } = useModal();
 
   useEffect(() => {
     // fetch data and update the state here
@@ -42,6 +46,10 @@ const UserSettings = () => {
     // Your delete logic here
   };
 
+  const handleOpenModal = () => {
+    showModal(<CreateUser />);
+  };
+
   const columns = [
     ...UserSettingsCoulmns,
     {
@@ -59,6 +67,7 @@ const UserSettings = () => {
     <div>
       <h2>User Settings</h2>
       <GeneralTable columns={columns} rows={employees} />
+      <button onClick={handleOpenModal}>Open Modal</button>
     </div>
   );
 };
