@@ -9,7 +9,7 @@ export const UserSettingsServices = {
       return res?.data?.map((item) => {
         return {
           id: item.id,
-          name: item.userName,
+          name: item.username,
           department: item.department,
         };
       });

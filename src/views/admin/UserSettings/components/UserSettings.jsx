@@ -27,10 +27,9 @@ const UserSettings = () => {
         const employeesList = await UserSettingsServices.list(
           currentUser?.department
         );
-        console.log(employeesList);
         setEmployees(employeesList);
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     };
     getEmployees();

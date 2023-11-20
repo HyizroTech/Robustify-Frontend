@@ -50,7 +50,7 @@ export default function GeneralTable({ columns, rows }) {
                     hover
                     role="checkbox"
                     tabIndex={-1}
-                    key={row?.number}
+                    key={row?.id}
                   >
                     <TableCell>{page * rowsPerPage + rowIndex + 1}</TableCell>
                     {columns.map((column) => {

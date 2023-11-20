@@ -114,7 +114,7 @@ const SideBar = () => {
     },
   ];
 
-  const SideBarLinks = userRole === "ADMIN" ? AdminSideBar : EmployeeSideBar;
+  const SideBarLinks = userRole === "Admin" ? AdminSideBar : EmployeeSideBar;
 
   return (
     <Drawer

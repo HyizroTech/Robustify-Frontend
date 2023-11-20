@@ -12,7 +12,7 @@ import { ModalProvider } from "./contexts";
 // Services
 import { AuthenticationService } from "./services/auth.service";
 
-axios.defaults.baseURL = "http://localhost:8080/api/";
+axios.defaults.baseURL = "http://localhost:3001/api/";
 
 axios.interceptors.request.use((req) => {
   const token = AuthenticationService.getAuthToken();

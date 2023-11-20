@@ -36,9 +36,9 @@ const Layout = () => {
   useEffect(() => {
     const isLoggedIn = AuthenticationService.isLoggedIn();
     if (isLoggedIn) {
-      const currentUser = AuthenticationService.getCurrentUser();
-      setCurrentUser(currentUser);
-      setUserRole(currentUser?.role);
+      const { user } = AuthenticationService.getCurrentUser();
+      setCurrentUser(user);
+      setUserRole(user?.role);
     } else {
       navigate(`/login`);
     }
@@ -65,8 +65,8 @@ const Layout = () => {
         <LoginLayout />
       ) : (
         <Routes>
-          {userRole === "ADMIN" && renderRoutes(AdminRoutes)}
-          {userRole === "EMPLOYEE" && renderRoutes(EmployeeRoutes)}
+          {userRole === "Admin" && renderRoutes(AdminRoutes)}
+          {userRole === "Employee" && renderRoutes(EmployeeRoutes)}
         </Routes>
       )}
     </>
