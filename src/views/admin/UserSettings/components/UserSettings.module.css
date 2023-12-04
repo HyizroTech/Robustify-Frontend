@@ -1,0 +1,24 @@
+.settingsCont {
+  /* height: 70vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+}
+
+.usersList {
+  display: flex;
+  flex-direction: column;
+  min-width: 80%;
+  align-items: center;
+  gap: 5rem;
+}
+
+.createUserBtn {
+  width: 15rem;
+  height: 3.75rem;
+  border-radius: 1.875rem;
+  background-color: #89abe3;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+  border: transparent;
+}

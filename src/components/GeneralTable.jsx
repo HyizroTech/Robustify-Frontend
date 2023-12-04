@@ -24,17 +24,31 @@ export default function GeneralTable({ columns, rows }) {
     setPage(0);
   };
 
+  const headerStyle = {
+    backgroundColor: "#89ABE3",
+    color: "#000",
+    textTransform: "uppercase",
+  };
+
+  const rowStyleOdd = {
+    backgroundColor: "#00E5F4",
+  };
+
+  const rowStyleEven = {
+    backgroundColor: "#fff",
+  };
+
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell>NR</TableCell>
+              <TableCell style={headerStyle}>NR</TableCell>
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
-                  style={{ minWidth: column.minWidth }}
+                  style={{ minWidth: column.minWidth, ...headerStyle }}
                 >
                   {column.label}
                 </TableCell>
@@ -51,6 +65,7 @@ export default function GeneralTable({ columns, rows }) {
                     role="checkbox"
                     tabIndex={-1}
                     key={row?.id}
+                    sx={rowIndex % 2 === 0 ? rowStyleEven : rowStyleOdd}
                   >
                     <TableCell>{page * rowsPerPage + rowIndex + 1}</TableCell>
                     {columns.map((column) => {

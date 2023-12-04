@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import styles from "./UserSettings.module.css";
 
 // Components
 import GeneralTable from "../../../../components/GeneralTable";
@@ -63,10 +64,14 @@ const UserSettings = () => {
   ];
 
   return (
-    <div>
+    <div className={styles.settingsCont}>
       <h2>User Settings</h2>
-      <GeneralTable columns={columns} rows={employees} />
-      <button onClick={handleOpenModal}>Open Modal</button>
+      <div className={styles.usersList}>
+        <GeneralTable columns={columns} rows={employees} />
+        <button className={styles.createUserBtn} onClick={handleOpenModal}>
+          Create New User
+        </button>
+      </div>
     </div>
   );
 };
