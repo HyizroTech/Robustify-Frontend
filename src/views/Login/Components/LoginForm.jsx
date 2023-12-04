@@ -61,7 +61,6 @@ const LoginForm = () => {
               setInputs({ ...inputs, [e.target.name]: e.target.value })
             }
           />
-          {errors.username && <p>{errors.username.message}</p>}
         </div>
         <div className={styles.formInput}>
           <label htmlFor="password">Password</label>
@@ -75,7 +74,6 @@ const LoginForm = () => {
               setInputs({ ...inputs, [e.target.name]: e.target.value })
             }
           />
-          {errors.password && <p>{errors.password.message}</p>}
         </div>
         <button type="submit">Log In</button>
       </form>

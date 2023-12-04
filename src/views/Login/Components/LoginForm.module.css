@@ -58,12 +58,12 @@
   height: 2.3rem;
   padding: 1rem;
   font-family: "Inter";
-  color: #131d32;
+  color: #fff;
   background: linear-gradient(270deg, #a3c2e3 0%, #6c9ec1 100%);
   border: transparent;
   border-radius: 30px;
 }
 
 .formInput > input:focus {
-  border-color: #131d32;
+  outline: none;
 }

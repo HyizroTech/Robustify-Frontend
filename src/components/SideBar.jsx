@@ -52,9 +52,21 @@ const SideBar = () => {
       text: "Operations",
       icon: <AssessmentOutlined />,
       sublinks: [
-        { id: 1, text: "Utiliztion", onclick: () => navigate("") },
-        { id: 2, text: "Place New Order", onclick: () => navigate("") },
-        { id: 3, text: "Place New Document", onclick: () => navigate("") },
+        {
+          id: 1,
+          text: "Utilization",
+          onclick: () => navigate("/admin/operations/utilization"),
+        },
+        {
+          id: 2,
+          text: "Place New Order",
+          onclick: () => navigate("/admin/operations/place-order"),
+        },
+        {
+          id: 3,
+          text: "Place New Document",
+          onclick: () => navigate("/admin/operations/place-document"),
+        },
       ],
     },
     {

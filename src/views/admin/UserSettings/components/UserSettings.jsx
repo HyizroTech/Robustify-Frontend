@@ -5,7 +5,7 @@ import GeneralTable from "../../../../components/GeneralTable";
 import CreateUser from "./CreateUser";
 
 // Constant Variables
-import { UserSettingsCoulmns } from "../../../../constants/tableColumns.const";
+import { UserSettingsColumns } from "../../../../constants/tableColumns.const";
 
 // Services
 import { UserSettingsServices } from "../services/users.service";
@@ -50,7 +50,7 @@ const UserSettings = () => {
   };
 
   const columns = [
-    ...UserSettingsCoulmns,
+    ...UserSettingsColumns,
     {
       id: "actions",
       label: "Actions",

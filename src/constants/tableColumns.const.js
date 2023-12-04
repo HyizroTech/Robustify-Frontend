@@ -1,33 +1,32 @@
-export const EmployeeListCoulmns = [
-  { id: "number", label: "Nr", minWidth: 100 },
+export const EmployeeListColumns = [
+  { id: "id", label: "ID", minWidth: 100 },
   { id: "name", label: "Name", minWidth: 100 },
   { id: "department", label: "Department", minWidth: 100 },
   { id: "utilization", label: "Utilization", minWidth: 100 },
-  { id: "actions", label: "Actions", minWidth: 150 },
 ];
 
-export const OrderListCoulmns = [
+export const OrderListColumns = [
   { id: "number", label: "Nr", minWidth: 100 },
   { id: "name", label: "Customer Name", minWidth: 100 },
   { id: "order-id", label: "Order ID", minWidth: 100 },
   { id: "status", label: "Status", minWidth: 100 },
 ];
 
-export const CurrentStockCoulmns = [
+export const CurrentStockColumns = [
   { id: "number", label: "NO", minWidth: 100 },
   { id: "item", label: "Item", minWidth: 100 },
   { id: "quantity", label: "Quantity", minWidth: 100 },
   { id: "location", label: "location", minWidth: 100 },
 ];
 
-export const UpcomingPurchasesCoulmns = [
+export const UpcomingPurchasesColumns = [
   { id: "number", label: "Nr", minWidth: 100 },
   { id: "item", label: "Item", minWidth: 100 },
   { id: "quantity", label: "Quantity", minWidth: 100 },
   { id: "exp-arrival", label: "Exp.Arrival Date", minWidth: 100 },
 ];
 
-export const PurchaseHistoryCoulmns = [
+export const PurchaseHistoryColumns = [
   { id: "number", label: "ID", minWidth: 100 },
   { id: "item", label: "Item", minWidth: 100 },
   { id: "quantity", label: "Quantity", minWidth: 100 },
@@ -37,7 +36,7 @@ export const PurchaseHistoryCoulmns = [
   { id: "phone", label: "Phone Number", minWidth: 100 },
 ];
 
-export const ComplaintsCoulmns = [
+export const ComplaintsColumns = [
   { id: "number", label: "Complaint Nr", minWidth: 100 },
   { id: "customer", label: "Customer", minWidth: 100 },
   { id: "defect", label: "Defect", minWidth: 100 },
@@ -45,7 +44,7 @@ export const ComplaintsCoulmns = [
   { id: "comment", label: "Comment", minWidth: 100 },
 ];
 
-export const SalesCoulmns = [
+export const SalesColumns = [
   { id: "number", label: "Nr", minWidth: 100 },
   { id: "customerName", label: "Customer Name", minWidth: 100 },
   { id: "invoiceNr", label: "Invoice Nr", minWidth: 100 },
@@ -54,13 +53,13 @@ export const SalesCoulmns = [
   { id: "grossProfit", label: "Gross Profit", minWidth: 100 },
 ];
 
-export const ReadyForInvociesCoulmns = [
+export const ReadyForInvociesColumns = [
   { id: "number", label: "Nr", minWidth: 100 },
   { id: "customerName", label: "Customer Name", minWidth: 100 },
   { id: "orderId", label: "Order ID", minWidth: 100 },
 ];
 
-export const UserSettingsCoulmns = [
+export const UserSettingsColumns = [
   { id: "id", label: "ID", minWidth: 100 },
   { id: "name", label: "Name", minWidth: 100 },
   { id: "department", label: "Department", minWidth: 100 },
