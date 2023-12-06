@@ -25,13 +25,13 @@ export default function GeneralTable({ columns, rows }) {
   };
 
   const headerStyle = {
-    backgroundColor: "#89ABE3",
+    backgroundColor: "#6291dc",
     color: "#000",
     textTransform: "uppercase",
   };
 
   const rowStyleOdd = {
-    backgroundColor: "#00E5F4",
+    backgroundColor: "#75caff",
   };
 
   const rowStyleEven = {
