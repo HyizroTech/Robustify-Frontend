@@ -1,23 +1,60 @@
 // PlaceOrder.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormBox from "../../../../components/FormBox";
 
 import styles from "./PlaceOrder.module.css";
 
+import { OperationsServices } from "../services/operations.service";
+
+import { Items } from "../../../../constants";
 const PlaceOrder = () => {
   const [customerData, setCustomerData] = useState({});
   const [orderData, setOrderData] = useState({});
+  const [otherOrderData, setOtherOrderData] = useState({});
+  const [designEmployees, setDesignEmployees] = useState([]);
   // Define your form fields for each form
+
+  useEffect(() => {
+    const getDesignEmployees = async () => {
+      try {
+        const employees = await OperationsServices.listDesignEmployees();
+        setDesignEmployees(employees);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getDesignEmployees();
+  }, []);
+
   const customerFields = [
-    { name: "customerName", label: "Customer Name" },
-    { name: "address", label: "Address" },
-    // ... other fields
+    { name: "customerName", placeholder: "Customer Name" },
+    { name: "address", placeholder: "Address" },
+    { name: "phoneNumber", placeholder: "Phone Number" },
+    { name: "email", placeholder: "Email Address", type: "email" },
   ];
 
   const orderFields = [
-    { name: "sizeWidth", label: "Size In Width" },
-    { name: "sizeHeight", label: "Size In Height" },
-    // ... other fields
+    { name: "sizeInWidth", placeholder: "Size In Width", type: "number" },
+    { name: "sizeInHeight", placeholder: "Size In Height", type: "number" },
+    { name: "quantity", placeholder: "Quantity", type: "number" },
+    {
+      name: "paperType",
+      placeholder: "Paper Type",
+      type: "select",
+      options: Object.values(Items.paper.types).map((type) => type.name),
+    },
+  ];
+
+  const otherOrderFields = [
+    {
+      name: "assignToId",
+      placeholder: "Assign To",
+      type: "select",
+      options: designEmployees,
+    },
+    { name: "deadline", placeholder: "Deadline", type: "date" },
+    { name: "consumption", placeholder: "Consumption", type: "number" },
+    { name: "cost", placeholder: "Cost", type: "number" },
   ];
 
   const handleCustomerSubmit = (data) => {
@@ -28,10 +65,19 @@ const PlaceOrder = () => {
     setOrderData(data);
   };
 
+  const handleOtherOrderSubmit = (data) => {
+    setOtherOrderData(data);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(customerData);
-    console.log(orderData);
+    const newOrderData = {
+      contactInfo: customerData,
+      ...orderData,
+      ...otherOrderData,
+    };
+
+    console.log(newOrderData);
   };
 
   // Render the generic form with the field configurations
@@ -48,7 +94,11 @@ const PlaceOrder = () => {
           fields={orderFields}
           onSubmit={handleOrderSubmit}
         />
-        {/* You can add more GenericForm instances with different fields and submission handlers */}
+        <FormBox
+          formHead="Other"
+          fields={otherOrderFields}
+          onSubmit={handleOtherOrderSubmit}
+        />
       </div>
       <button onClick={handleSubmit}>Submit</button>
     </div>

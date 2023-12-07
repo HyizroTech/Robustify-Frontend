@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const OperationsServices = {
-  listUsers: async () => {
+  listUsersWithUtil: async () => {
     const res = await axios.get("/admin/users?utilization=true");
     return res?.data?.map((user) => {
       return {
@@ -10,6 +10,16 @@ export const OperationsServices = {
         department: user.department,
         utilization: user.utilization * 100,
       };
+    });
+  },
+
+  listDesignEmployees: async () => {
+    const res = await axios.get(
+      "/admin/users?department=Design&utilization=false"
+    );
+
+    return res?.data?.map((user) => {
+      return { name: user.username, id: user.id };
     });
   },
 };

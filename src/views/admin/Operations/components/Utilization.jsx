@@ -16,7 +16,7 @@ const Utilization = () => {
   useEffect(() => {
     const getEmployeesUtil = async () => {
       try {
-        const employeeUtil = await OperationsServices.listUsers();
+        const employeeUtil = await OperationsServices.listUsersWithUtil();
         setEmployeesUtil(employeeUtil);
         setFilteredEmployees(employeeUtil);
       } catch (error) {

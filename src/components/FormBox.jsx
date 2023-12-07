@@ -22,21 +22,47 @@ const FormBox = ({ formHead, fields, onSubmit }) => {
   };
   return (
     <div className={styles.box}>
-      <h2>{formHead}</h2>
+      <div className={styles.boxHead}>
+        <h2>{formHead}</h2>
+      </div>
       <form onSubmit={handleSubmit} className={styles.boxForm}>
-        {fields.map((field) => (
-          <label key={field.name}>
-            {field.label}
-            <input
-              type={field.type || "text"}
-              name={field.name}
-              placeholder={field.placeholder}
-              value={formData[field.name]}
-              onChange={handleChange}
-            />
-          </label>
-        ))}
-        <button type="submit">Submit</button>
+        {fields.map((field) => {
+          if (field.type === "select") {
+            return (
+              <select
+                key={field.name}
+                name={field.name}
+                value={formData[field.name]}
+                onChange={handleChange}
+                placeholder={field.placeholder}
+              >
+                <option value="" disabled>
+                  {field.placeholder}
+                </option>
+                {field.options.map((option) => (
+                  <option
+                    key={option?.id ? option.id : option}
+                    value={option?.id ? option.id : option}
+                  >
+                    {option?.id ? option.name : option}
+                  </option>
+                ))}
+              </select>
+            );
+          }
+          return (
+            <div key={field.name}>
+              <input
+                type={field.type || "text"}
+                name={field.name}
+                placeholder={field.placeholder}
+                value={formData[field.name]}
+                onChange={handleChange}
+              />
+            </div>
+          );
+        })}
+        <button type="submit">Save Data</button>
       </form>
     </div>
   );
