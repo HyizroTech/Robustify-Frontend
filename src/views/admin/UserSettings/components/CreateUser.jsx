@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Departments, Roles } from "../../../../constants";
 import { useModal } from "../../../../contexts/modal.context";
+import { UserSettingsServices } from "../services";
 import {
   TextField,
   MenuItem,
@@ -13,56 +14,78 @@ import {
 
 const CreateUser = () => {
   const { hideModal } = useModal();
-  
-  const handleClick = () => {
-    console.log("Clicked");
+
+  const [inputs, setInputs] = useState({
+    username: "",
+    email: "",
+    password: "",
+    department: "",
+    role: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await UserSettingsServices.create(inputs);
+      console.log(response);
+    } catch (error) {
+      console.error(error?.response?.data);
+    }
   };
 
-  const [department, setDepartment] = useState("");
-  const [role, setRole] = useState("");
-
-  // Handle change for Select fields
-  const handleDepartmentChange = (event) => {
-    setDepartment(event.target.value);
-  };
-
-  const handleRoleChange = (event) => {
-    setRole(event.target.value);
-  };
   return (
-    <div onClick={handleClick}>
+    <div>
       <div>
         <h2>Create New User</h2>
         <button onClick={hideModal}>Close</button>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField fullWidth label="Username" variant="outlined" />
-          </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
-              label="Email"
+              name="username"
+              label="Username"
               variant="outlined"
-              type="email"
+              onChange={(e) =>
+                setInputs({ ...inputs, [e.target.name]: e.target.value })
+              }
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
+              name="email"
+              label="Email"
+              variant="outlined"
+              type="email"
+              onChange={(e) =>
+                setInputs({ ...inputs, [e.target.name]: e.target.value })
+              }
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              name="password"
               label="Password"
               variant="outlined"
               type="password"
+              onChange={(e) =>
+                setInputs({ ...inputs, [e.target.name]: e.target.value })
+              }
             />
           </Grid>
           <Grid item xs={12}>
             <FormControl fullWidth>
               <InputLabel>Department</InputLabel>
               <Select
-                value={department}
+                name="department"
+                value={inputs.department}
                 label="Department"
-                onChange={handleDepartmentChange}
+                onChange={(e) =>
+                  setInputs({ ...inputs, [e.target.name]: e.target.value })
+                }
               >
                 {Departments.map((department) => (
                   <MenuItem key={department} value={department}>
@@ -75,7 +98,14 @@ const CreateUser = () => {
           <Grid item xs={12}>
             <FormControl fullWidth>
               <InputLabel>Role</InputLabel>
-              <Select value={role} label="Role" onChange={handleRoleChange}>
+              <Select
+                name="role"
+                value={inputs.role}
+                label="Role"
+                onChange={(e) =>
+                  setInputs({ ...inputs, [e.target.name]: e.target.value })
+                }
+              >
                 {Roles.map((role) => (
                   <MenuItem key={role} value={role}>
                     {role}
@@ -85,7 +115,7 @@ const CreateUser = () => {
             </FormControl>
             <Grid item xs={12}></Grid>
           </Grid>
-          <Button variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary">
             Submit
           </Button>
         </Grid>

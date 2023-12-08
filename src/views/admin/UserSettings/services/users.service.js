@@ -16,4 +16,14 @@ export const UserSettingsServices = {
     }
     return false;
   },
+  create: async (data) => {
+    const res = await axios.post("admin/users", {
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      department: data.department,
+      role: data.role,
+    });
+    return res?.data;
+  },
 };

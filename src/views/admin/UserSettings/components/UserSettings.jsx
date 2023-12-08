@@ -9,7 +9,7 @@ import CreateUser from "./CreateUser";
 import { UserSettingsColumns } from "../../../../constants/tableColumns.const";
 
 // Services
-import { UserSettingsServices } from "../services/users.service";
+import { UserSettingsServices } from "../services";
 
 // Contexts
 import { UserContext } from "../../../../contexts";
