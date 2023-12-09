@@ -22,4 +22,7 @@ export const OperationsServices = {
       return { name: user.username, id: user.id };
     });
   },
+
+  createNewOrder: (data) =>
+    axios.post("/orders", data).then((res) => res?.data),
 };

@@ -1,4 +1,3 @@
-// PlaceOrder.js
 import React, { useEffect, useState } from "react";
 import FormBox from "../../../../components/FormBox";
 
@@ -27,9 +26,9 @@ const PlaceOrder = () => {
   }, []);
 
   const customerFields = [
-    { name: "customerName", placeholder: "Customer Name" },
-    { name: "address", placeholder: "Address" },
-    { name: "phoneNumber", placeholder: "Phone Number" },
+    { name: "name", placeholder: "Customer Name" },
+    { name: "location", placeholder: "Address" },
+    { name: "phone", placeholder: "Phone Number" },
     { name: "email", placeholder: "Email Address", type: "email" },
   ];
 
@@ -52,7 +51,7 @@ const PlaceOrder = () => {
       type: "select",
       options: designEmployees,
     },
-    { name: "deadline", placeholder: "Deadline", type: "date" },
+    { name: "deadline", type: "date" },
     { name: "consumption", placeholder: "Consumption", type: "number" },
     { name: "cost", placeholder: "Cost", type: "number" },
   ];
@@ -69,7 +68,7 @@ const PlaceOrder = () => {
     setOtherOrderData(data);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newOrderData = {
       contactInfo: customerData,
@@ -77,7 +76,12 @@ const PlaceOrder = () => {
       ...otherOrderData,
     };
 
-    console.log(newOrderData);
+    try {
+      const response = await OperationsServices.createNewOrder(newOrderData);
+      console.log(response);
+    } catch (error) {
+      console.error(error?.response?.data);
+    }
   };
 
   // Render the generic form with the field configurations

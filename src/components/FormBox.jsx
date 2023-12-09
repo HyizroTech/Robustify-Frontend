@@ -1,8 +1,18 @@
 import React, { useState } from "react";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  TextField,
+  Button,
+} from "@mui/material";
 
 import styles from "./styles/FormBox.module.css";
 
 const FormBox = ({ formHead, fields, onSubmit }) => {
+  const [error, setError] = useState("");
+
   const initialState = fields.reduce((acc, field) => {
     acc[field.name] = "";
     return acc;
@@ -17,52 +27,63 @@ const FormBox = ({ formHead, fields, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    onSubmit(formData);
+    setError("");
+
+    const isEmpty = Object.values(formData).some((value) => value === "");
+
+    if (isEmpty) {
+      setError("Please fill in all the fields.");
+    } else {
+      onSubmit(formData);
+    }
   };
+
   return (
     <div className={styles.box}>
-      <div className={styles.boxHead}>
-        <h2>{formHead}</h2>
-      </div>
+      <h2>{formHead}</h2>
       <form onSubmit={handleSubmit} className={styles.boxForm}>
+        {error && <div style={{ color: "red" }}>{error}</div>}
         {fields.map((field) => {
           if (field.type === "select") {
             return (
-              <select
-                key={field.name}
-                name={field.name}
-                value={formData[field.name]}
-                onChange={handleChange}
-                placeholder={field.placeholder}
-              >
-                <option value="" disabled>
-                  {field.placeholder}
-                </option>
-                {field.options.map((option) => (
-                  <option
-                    key={option?.id ? option.id : option}
-                    value={option?.id ? option.id : option}
-                  >
-                    {option?.id ? option.name : option}
-                  </option>
-                ))}
-              </select>
+              <FormControl fullWidth key={field.name}>
+                <InputLabel>{field.placeholder}</InputLabel>
+                <Select
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  displayEmpty
+                  label={field.placeholder}
+                >
+                  {field.options.map((option) => (
+                    <MenuItem
+                      key={option?.id ? option.id : option}
+                      value={option?.id ? option.id : option}
+                    >
+                      {option?.id ? option.name : option}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             );
           }
           return (
-            <div key={field.name}>
-              <input
-                type={field.type || "text"}
-                name={field.name}
-                placeholder={field.placeholder}
-                value={formData[field.name]}
-                onChange={handleChange}
-              />
-            </div>
+            <TextField
+              fullWidth
+              key={field.name}
+              type={field.type || "text"}
+              name={field.name}
+              label={field.placeholder}
+              value={formData[field.name]}
+              onChange={handleChange}
+              variant="outlined"
+              margin="normal"
+            />
           );
         })}
-        <button type="submit">Save Data</button>
+        <Button variant="contained" type="submit" sx={{ mt: 2 }}>
+          Save Data
+        </Button>
       </form>
     </div>
   );
