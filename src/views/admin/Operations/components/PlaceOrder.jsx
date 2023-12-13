@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import FormBox from "../../../../components/FormBox";
+
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  TextField,
+  Button,
+} from "@mui/material";
 
 import styles from "./PlaceOrder.module.css";
 
@@ -7,11 +15,26 @@ import { OperationsServices } from "../services/operations.service";
 
 import { Items } from "../../../../constants";
 const PlaceOrder = () => {
-  const [customerData, setCustomerData] = useState({});
-  const [orderData, setOrderData] = useState({});
-  const [otherOrderData, setOtherOrderData] = useState({});
+  const [customerData, setCustomerData] = useState({
+    name: "",
+    location: "",
+    phone: "",
+    email: "",
+  });
+  const [orderData, setOrderData] = useState({
+    sizeInWidth: "",
+    sizeInHeight: "",
+    quantity: "",
+    paperType: "",
+  });
+  const [otherOrderData, setOtherOrderData] = useState({
+    assignToId: "",
+    deadline: "",
+    consumption: "",
+    cost: "",
+  });
   const [designEmployees, setDesignEmployees] = useState([]);
-  // Define your form fields for each form
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const getDesignEmployees = async () => {
@@ -25,6 +48,7 @@ const PlaceOrder = () => {
     getDesignEmployees();
   }, []);
 
+  // Define your form fields for each form
   const customerFields = [
     { name: "name", placeholder: "Customer Name" },
     { name: "location", placeholder: "Address" },
@@ -56,55 +80,167 @@ const PlaceOrder = () => {
     { name: "cost", placeholder: "Cost", type: "number" },
   ];
 
-  const handleCustomerSubmit = (data) => {
-    setCustomerData(data);
-  };
-
-  const handleOrderSubmit = (data) => {
-    setOrderData(data);
-  };
-
-  const handleOtherOrderSubmit = (data) => {
-    setOtherOrderData(data);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newOrderData = {
-      contactInfo: customerData,
-      ...orderData,
-      ...otherOrderData,
-    };
+    setErrorMessage("");
 
-    try {
-      const response = await OperationsServices.createNewOrder(newOrderData);
-      console.log(response);
-    } catch (error) {
-      console.error(error?.response?.data);
+    const isEmpty =
+      Object.values(customerData).some((value) => value === "") ||
+      Object.values(orderData).some((value) => value === "") ||
+      Object.values(otherOrderData).some((value) => value === "");
+
+    if (isEmpty) {
+      setErrorMessage("Please fill in all the fields.");
+    } else {
+      const newOrderData = {
+        contactInfo: customerData,
+        ...orderData,
+        ...otherOrderData,
+      };
+      try {
+        await OperationsServices.createNewOrder(newOrderData);
+      } catch (error) {
+        console.error(error?.response?.data);
+      }
     }
   };
 
-  // Render the generic form with the field configurations
   return (
     <div className={styles.container}>
-      <div className={styles.formContainer}>
-        <FormBox
-          formHead="Customer Info"
-          fields={customerFields}
-          onSubmit={handleCustomerSubmit}
-        />
-        <FormBox
-          formHead="Order Info"
-          fields={orderFields}
-          onSubmit={handleOrderSubmit}
-        />
-        <FormBox
-          formHead="Other"
-          fields={otherOrderFields}
-          onSubmit={handleOtherOrderSubmit}
-        />
-      </div>
-      <button onClick={handleSubmit}>Submit</button>
+      <h2>Place New Order</h2>
+      <form className={styles.formContainer} onSubmit={handleSubmit}>
+        {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
+        <div className={styles.formsWrapper}>
+          <div className={styles.box}>
+            <h3>Customer Info</h3>
+            <div className={styles.boxInput}>
+              {customerFields.map((field) => (
+                <TextField
+                  fullWidth
+                  key={field.name}
+                  type={field.type || "text"}
+                  name={field.name}
+                  label={field.placeholder}
+                  variant="outlined"
+                  onChange={(e) =>
+                    setCustomerData({
+                      ...customerData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                />
+              ))}
+            </div>
+          </div>
+          <div className={styles.box}>
+            <h3>Order Info</h3>
+            <div className={styles.boxInput}>
+              {orderFields.map((field) => {
+                if (field.type === "select") {
+                  return (
+                    <FormControl fullWidth key={field.name}>
+                      <InputLabel>{field.placeholder}</InputLabel>
+                      <Select
+                        name={field.name}
+                        displayEmpty
+                        label={field.placeholder}
+                        value={orderData[field.name]}
+                        variant="outlined"
+                        onChange={(e) =>
+                          setOrderData({
+                            ...orderData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
+                      >
+                        {field.options.map((option) => (
+                          <MenuItem
+                            key={option?.id ? option.id : option}
+                            value={option?.id ? option.id : option}
+                          >
+                            {option?.id ? option.name : option}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  );
+                }
+                return (
+                  <TextField
+                    fullWidth
+                    key={field.name}
+                    type={field.type || "text"}
+                    name={field.name}
+                    label={field.placeholder}
+                    variant="outlined"
+                    onChange={(e) =>
+                      setOrderData({
+                        ...orderData,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                  />
+                );
+              })}
+            </div>
+          </div>
+          <div className={styles.box}>
+            <h3>Order Info</h3>
+            <div className={styles.boxInput}>
+              {otherOrderFields.map((field) => {
+                if (field.type === "select") {
+                  return (
+                    <FormControl fullWidth key={field.name}>
+                      <InputLabel>{field.placeholder}</InputLabel>
+                      <Select
+                        name={field.name}
+                        displayEmpty
+                        value={otherOrderData[field.name]}
+                        label={field.placeholder}
+                        variant="outlined"
+                        onChange={(e) =>
+                          setOtherOrderData({
+                            ...otherOrderData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
+                      >
+                        {field.options.map((option) => (
+                          <MenuItem
+                            key={option?.id ? option.id : option}
+                            value={option?.id ? option.id : option}
+                          >
+                            {option?.id ? option.name : option}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  );
+                }
+                return (
+                  <TextField
+                    fullWidth
+                    key={field.name}
+                    type={field.type || "text"}
+                    name={field.name}
+                    label={field.placeholder}
+                    variant="outlined"
+                    onChange={(e) =>
+                      setOtherOrderData({
+                        ...otherOrderData,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        <Button variant="contained" type="submit" sx={{ mt: 2 }}>
+          Submit
+        </Button>
+      </form>
     </div>
   );
 };
