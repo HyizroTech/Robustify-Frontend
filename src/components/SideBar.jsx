@@ -45,7 +45,7 @@ const SideBar = () => {
       id: 1,
       text: "Dashboard",
       icon: <SpeedOutlined />,
-      onclick: () => navigate(""),
+      onclick: () => navigate("/admin"),
     },
     {
       id: 2,
