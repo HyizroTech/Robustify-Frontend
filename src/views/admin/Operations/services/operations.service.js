@@ -8,7 +8,7 @@ export const OperationsServices = {
         id: user.id,
         name: user.username,
         department: user.department,
-        utilization: user.Utilizations[0]?.utilizationRate * 100  || 0,
+        utilization: user.Utilizations[0]?.utilizationRate.toFixed(1) || 0,
       };
     });
   },

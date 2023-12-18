@@ -17,12 +17,10 @@ const OrderHistogram = () => {
     const getHistogramData = async () => {
       try {
         const res = await HomeServices.getOrderHistogram();
-        console.log(res);
         const resData = Object.entries(res).map(([key, value]) => ({
           name: key,
           value,
         }));
-        console.log(resData);
         setData(resData);
       } catch (error) {
         console.error(error.message);
@@ -32,7 +30,7 @@ const OrderHistogram = () => {
   }, []);
 
   return (
-    <BarChart width={500} height={300} data={data}>
+    <BarChart width={680} height={420} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />
