@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HomeServices } from "../services/home.service";
-import { PieChart, Pie, Tooltip, Cell, Legend } from "recharts";
+import { PieChart, Pie, Tooltip, Cell, Legend, Label } from "recharts";
 
 const AverageUtilization = () => {
   const [utilizationAverage, setUtilizationAverage] = useState(null);
@@ -43,6 +43,13 @@ const AverageUtilization = () => {
         {pieChartData.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
+        <Label
+          value={utilizationAverage ? `${utilizationAverage.toFixed(1)}%` : ''}
+          position="insideTop"
+          fill="#000"
+          style={{ fontSize: "24px" }}
+          className="progress-label"
+        />
       </Pie>
       <Tooltip />
       <Legend verticalAlign="bottom" height={50} />

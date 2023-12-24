@@ -36,7 +36,7 @@ const OrderHistogram = () => {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="value" fill="#8884d8" />
+      <Bar dataKey="value" fill="#8884d8" radius={[10, 10, 0, 0]}/>
     </BarChart>
   );
 };
