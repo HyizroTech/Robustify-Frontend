@@ -45,10 +45,9 @@ const AverageUtilization = () => {
         ))}
         <Label
           value={utilizationAverage ? `${utilizationAverage.toFixed(1)}%` : ''}
-          position="insideTop"
+          position="centerBottom"
           fill="#000"
           style={{ fontSize: "24px" }}
-          className="progress-label"
         />
       </Pie>
       <Tooltip />

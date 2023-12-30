@@ -25,4 +25,7 @@ export const OperationsServices = {
 
   createNewOrder: (data) =>
     axios.post("/orders", data).then((res) => res?.data),
+
+  createNewPurchase: (data) =>
+    axios.post("/purchases", data).then((res) => res?.data),
 };

@@ -9,6 +9,10 @@ import {
   Button,
 } from "@mui/material";
 
+import { DateField, LocalizationProvider } from "@mui/x-date-pickers";
+
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+
 import styles from "./Operations.module.css";
 
 import { OperationsServices } from "../services/operations.service";
@@ -75,7 +79,7 @@ const PlaceOrder = () => {
       type: "select",
       options: designEmployees,
     },
-    { name: "deadline", type: "date" },
+    { name: "deadline", type: "date", placeholder: "Deadline" },
     { name: "consumption", placeholder: "Consumption", type: "number" },
     { name: "cost", placeholder: "Cost", type: "number" },
   ];
@@ -215,6 +219,22 @@ const PlaceOrder = () => {
                         ))}
                       </Select>
                     </FormControl>
+                  );
+                }
+
+                if (field.type === "date") {
+                  return (
+                    <LocalizationProvider dateAdapter={AdapterMoment}>
+                      <DateField
+                        label={field.placeholder}
+                        onChange={(e) =>
+                          setOtherOrderData({
+                            ...otherOrderData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
+                      />
+                    </LocalizationProvider>
                   );
                 }
                 return (
