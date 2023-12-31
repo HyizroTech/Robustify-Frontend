@@ -73,7 +73,7 @@ const SideBar = () => {
       id: 3,
       text: "Orders",
       icon: <NoteAddOutlined />,
-      onclick: () => navigate(""),
+      onclick: () => navigate("/admin/orders"),
     },
     {
       id: 4,

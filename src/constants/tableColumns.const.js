@@ -6,9 +6,8 @@ export const EmployeeListColumns = [
 ];
 
 export const OrderListColumns = [
-  { id: "number", label: "Nr", minWidth: 100 },
+  { id: "id", label: "Order ID", minWidth: 100 },
   { id: "name", label: "Customer Name", minWidth: 100 },
-  { id: "order-id", label: "Order ID", minWidth: 100 },
   { id: "status", label: "Status", minWidth: 100 },
 ];
 

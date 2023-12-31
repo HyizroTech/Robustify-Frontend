@@ -7,6 +7,7 @@ const UserSettings = lazy(() =>
 const Operations = lazy(() =>
   import("../views/admin/Operations/operations.router")
 );
+const Orders = lazy(() => import("../views/admin/Orders/orders.router"));
 
 export const AdminRoutes = [
   {
@@ -23,5 +24,10 @@ export const AdminRoutes = [
     path: "/admin/operations/*",
     name: "operations",
     component: Operations,
+  },
+  {
+    path: "/admin/orders/*",
+    name: "orders",
+    component: Orders,
   },
 ];
