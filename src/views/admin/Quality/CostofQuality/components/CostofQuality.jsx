@@ -45,14 +45,13 @@ const CostofQuality = () => {
   };
   const buttonStyle = {
     background: "#233B55",
-    color: "white", 
+    color: "white",
     borderRadius: "30px",
     display: "flex",
     fontFamily: "Inter",
     fontSize: "20px",
     fontWeight: "700",
-    padding: "0.5rem"
-
+    padding: "0.5rem",
   };
 
   const open = Boolean(anchorEl);
@@ -98,9 +97,7 @@ const CostofQuality = () => {
               vertical: "top",
               horizontal: "center",
             }}
-          >
-    
-          </Popover>
+          ></Popover>
         </div>;
         setGoodQualityValue("");
       } else if (type === "poor") {
@@ -110,19 +107,10 @@ const CostofQuality = () => {
     }
   };
 
-
-  // Chart Data
-  const chartData = [
-    {
-      name: "COQ Ratio",
-      value: coqRatio * 100, // Multiply by 100 to show percentage
-    },
-  ];
-    const donutChartData = [
+  const donutChartData = [
     { name: "Good Quality", value: coqRatio * 100 }, // Good Quality percentage
     { name: "Poor Quality", value: (1 - coqRatio) * 100 }, // Poor Quality percentage
   ];
-
 
   return (
     <>
@@ -184,17 +172,21 @@ const CostofQuality = () => {
               Add Cost
             </button>
           </div>
-          <div >
+          <div>
             {poorQualityCosts.map((item, index) => (
               <p key={index}>{`${item.type}: ${item.cost}`}</p>
             ))}
           </div>
         </div>
 
-
         <div className="flex-contianr">
-          <Button  style={buttonStyle} onClick={handleClick} aria-describedby={id}>
-          Calculate Ratio Of COQ          </Button>
+          <Button
+            style={buttonStyle}
+            onClick={handleClick}
+            aria-describedby={id}
+          >
+            Calculate Ratio Of COQ{" "}
+          </Button>
           <Popover
             id={id}
             open={open}
@@ -209,29 +201,31 @@ const CostofQuality = () => {
               horizontal: "center",
             }}
           >
-            <Typography >
-            <div className="chart-container">
-            <h6 className="COQ-container-title">Cost Of Quality Ratio
-</h6>
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie
-              data={donutChartData}
-              dataKey="value"
-              cx="50%"
-              cy="50%"
-              innerRadius={60}
-              outerRadius={80}
-              fill="#8884d8"
-            >
-              {donutChartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={index === 0 ? "#82ca9d" : "#FF0000"} />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
+            <Typography>
+              <div className="chart-container">
+                <h6 className="COQ-container-title">Cost Of Quality Ratio</h6>
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={donutChartData}
+                      dataKey="value"
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={80}
+                      fill="#8884d8"
+                    >
+                      {donutChartData.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={index === 0 ? "#82ca9d" : "#FF0000"}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
             </Typography>
           </Popover>
         </div>

@@ -6,7 +6,7 @@ const CostofQuality = lazy(() => import("./components/CostofQuality"));
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<CostofQuality />} />
+      <Route path="/coq" element={<CostofQuality />} />
     </Routes>
   );
 };

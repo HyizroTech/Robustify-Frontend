@@ -89,8 +89,16 @@ const SideBar = () => {
       text: "Quality",
       icon: <ShowChartOutlined />,
       sublinks: [
-        { id: 1, text: "Complaints", onclick: () => navigate("") },
-        { id: 2, text: "COQ", onclick: () => navigate("") },
+        {
+          id: 1,
+          text: "Complaints",
+          onclick: () => navigate(""),
+        },
+        {
+          id: 2,
+          text: "COQ",
+          onclick: () => navigate("/admin/CostOfQuality/coq"),
+        },
       ],
     },
     {

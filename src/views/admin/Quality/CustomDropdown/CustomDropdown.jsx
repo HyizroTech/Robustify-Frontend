@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./CustomDropdown.css";
-import arrowDownIcon from "../../../../assets/arrow-down.svg";
-
 
 const CustomDropdown = ({ selected, selectTitle, options }) => {
   const [isOpen, setIsOpen] = useState(false);

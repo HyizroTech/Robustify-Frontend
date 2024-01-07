@@ -1,5 +1,4 @@
 import { lazy } from "react";
-import CostofQuality from "../views/admin/Quality/CostofQuality/components/CostofQuality";
 
 const HomePage = lazy(() => import("../views/admin/Home/home.router"));
 const UserSettings = lazy(() =>
@@ -9,6 +8,7 @@ const Operations = lazy(() =>
   import("../views/admin/Operations/operations.router")
 );
 const Orders = lazy(() => import("../views/admin/Orders/orders.router"));
+const CostOfQuality = lazy(()=> import("../views/admin/Quality/CostofQuality/CostofQuality.router"))
 
 export const AdminRoutes = [
   {
@@ -32,8 +32,8 @@ export const AdminRoutes = [
     component: Orders,
   },
   {
-    path: "/admin/CostofQuality/*",
+    path: "/admin/CostOfQuality/*",
     name: "Cost-of-Quality",
-    component: CostofQuality,
+    component: CostOfQuality,
   },
 ];
