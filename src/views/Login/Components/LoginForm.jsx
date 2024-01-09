@@ -45,17 +45,17 @@ const LoginForm = () => {
   return (
     <div className={styles.loginFormWrapper}>
       <div className={styles.loginFormHead}>
-        <p>Please enter your Log-In credentials </p>
+        <h2>LOGIN</h2>
+        <h3>To Continue</h3>
       </div>
-      {error && <p>{error}</p>}
       <form className={styles.loginForm} onSubmit={handleSubmit}>
+        {error && <p>{error}</p>}
         <div className={styles.formInput}>
-          <label htmlFor="username">Username</label>
           <input
             type="text"
             name="username"
             id="username"
-            placeholder="example@email.com"
+            placeholder="Username *"
             value={inputs.username}
             onChange={(e) =>
               setInputs({ ...inputs, [e.target.name]: e.target.value })
@@ -63,12 +63,11 @@ const LoginForm = () => {
           />
         </div>
         <div className={styles.formInput}>
-          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
             id="password"
-            placeholder="**********"
+            placeholder="Password *"
             value={inputs.password}
             onChange={(e) =>
               setInputs({ ...inputs, [e.target.name]: e.target.value })

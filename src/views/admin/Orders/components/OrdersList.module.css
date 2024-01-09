@@ -1,0 +1,12 @@
+.ordersListWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.ordersListWrapper > h2 {
+  font-size: 2rem;
+  font-family: "Archivo Narrow";
+  letter-spacing: 2px;
+}

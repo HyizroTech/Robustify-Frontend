@@ -5,6 +5,8 @@ import { UserContext } from "../contexts/user.context";
 // Hooks
 import { useNavigate } from "react-router-dom";
 
+import Logo from "../assets/Application-Logo.png";
+
 // MUI
 import {
   Drawer,
@@ -14,17 +16,18 @@ import {
   ListItemIcon,
   ListItemText,
   Collapse,
+  Typography,
 } from "@mui/material";
 import {
-  SpeedOutlined,
   AssessmentOutlined,
-  NoteAddOutlined,
-  WidgetsOutlined,
-  ShowChartOutlined,
-  PercentOutlined,
   SettingsOutlined,
   AssignmentOutlined,
   SentimentDissatisfiedOutlined,
+  AppsOutlined,
+  MenuBookOutlined,
+  InboxOutlined,
+  CheckBoxOutlined,
+  RequestQuoteOutlined,
 } from "@mui/icons-material";
 
 const SideBar = () => {
@@ -44,7 +47,7 @@ const SideBar = () => {
     {
       id: 1,
       text: "Dashboard",
-      icon: <SpeedOutlined />,
+      icon: <AppsOutlined />,
       onclick: () => navigate("/admin"),
     },
     {
@@ -72,13 +75,13 @@ const SideBar = () => {
     {
       id: 3,
       text: "Orders",
-      icon: <NoteAddOutlined />,
+      icon: <MenuBookOutlined />,
       onclick: () => navigate("/admin/orders"),
     },
     {
       id: 4,
       text: "Inventory",
-      icon: <WidgetsOutlined />,
+      icon: <InboxOutlined />,
       sublinks: [
         { id: 1, text: "Stock", onclick: () => navigate("") },
         { id: 2, text: "Purchase History", onclick: () => navigate("") },
@@ -87,7 +90,7 @@ const SideBar = () => {
     {
       id: 5,
       text: "Quality",
-      icon: <ShowChartOutlined />,
+      icon: <CheckBoxOutlined />,
       sublinks: [
         {
           id: 1,
@@ -104,7 +107,7 @@ const SideBar = () => {
     {
       id: 6,
       text: "Finance",
-      icon: <PercentOutlined />,
+      icon: <RequestQuoteOutlined />,
       sublinks: [
         { id: 1, text: "Sales", onclick: () => navigate("") },
         { id: 2, text: "Invoices", onclick: () => navigate("") },
@@ -143,10 +146,26 @@ const SideBar = () => {
         height: "100%",
         "& .MuiDrawer-paper": {
           position: "static",
-          background: "linear-gradient(180deg, #A9BEE6 6.59%, #5D367F 127%);",
+          background: "linear-gradient(180deg, #AABFE7 0%, #6F5697 100%);",
+          alignItems: "center",
+          paddingTop: "1rem",
+          gap: "2rem",
         },
       }}
     >
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <img
+          src={Logo}
+          alt="Logo"
+          style={{ width: "40px", marginRight: "10px" }}
+        />
+        <Typography
+          variant="h6"
+          sx={{ fontFamily: "Archivo Narrow", fontWeight: "700" }}
+        >
+          Robustify
+        </Typography>
+      </div>
       <List
         sx={{
           justifyContent: "center",
@@ -165,7 +184,10 @@ const SideBar = () => {
               }
             >
               <ListItemIcon>{link.icon}</ListItemIcon>
-              <ListItemText primary={link.text} />
+              <ListItemText
+                primary={link.text}
+                sx={{ fontSize: "1.25rem", fontFamily: "Archivo Narrow" }}
+              />
             </ListItemButton>
             {link.sublinks && (
               <Collapse

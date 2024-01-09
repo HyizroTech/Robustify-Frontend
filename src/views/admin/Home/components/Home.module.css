@@ -1,0 +1,37 @@
+.dashboardWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.chartsWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.chartWrapper {
+  background-color: #fff;
+  border: 3px solid #eaebef;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chartWrapper > h4 {
+  font-family: "Archivo Narrow";
+  font-size: 1.6rem;
+}
+
+.piChart {
+  max-width: 18.75rem;
+  padding-bottom: 2rem;
+}
+
+.histogram {
+  padding: 2rem;
+  height: 25rem;
+  max-width: 40.625rem;
+}

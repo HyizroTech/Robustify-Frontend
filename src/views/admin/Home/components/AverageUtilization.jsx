@@ -44,10 +44,10 @@ const AverageUtilization = () => {
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
         <Label
-          value={utilizationAverage ? `${utilizationAverage.toFixed(1)}%` : ''}
+          value={utilizationAverage ? `${utilizationAverage.toFixed(1)}%` : ""}
           position="centerBottom"
           fill="#000"
-          style={{ fontSize: "24px" }}
+          style={{ fontSize: "24px", fontFamily: "Archivo Narrow" }}
         />
       </Pie>
       <Tooltip />

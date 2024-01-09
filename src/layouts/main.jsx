@@ -7,10 +7,10 @@ import LoadingFallback from "../components/LoadingFallback";
 
 const MainLayout = ({ Component }) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-      <Navbar />
-      <div style={{ display: "flex", flex: 1 }}>
-        <SideBar />
+    <div style={{ display: "flex", height: "100vh" }}>
+      <SideBar />
+      <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
+        <Navbar />
         <div style={{ flex: 1, padding: "1rem" }}>
           <Suspense fallback={<LoadingFallback />}>
             <Component />

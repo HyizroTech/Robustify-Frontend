@@ -1,1 +1,12 @@
-/* TODO */
+.utilWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.utilWrapper > h2 {
+    font-size: 2rem;
+    font-family: "Archivo Narrow";
+    letter-spacing: 2px;
+}

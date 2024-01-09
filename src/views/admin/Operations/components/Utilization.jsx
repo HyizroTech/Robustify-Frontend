@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import GeneralTable from "../../../../components/GeneralTable";
 
-import { EmployeeListColumns } from "../../../../constants/tableColumns.const";
+// Services
 import { OperationsServices } from "../services/operations.service";
+
+// Components
+import GeneralTable from "../../../../components/GeneralTable";
 import { Select, InputLabel, MenuItem, Box, FormControl } from "@mui/material";
 
-// import styles from "./Utilization.module.css";
+// Constants
+import { EmployeeListColumns } from "../../../../constants/tableColumns.const";
+
+// Styles
+import styles from "./Utilization.module.css";
 
 const Utilization = () => {
   const [employeesUtil, setEmployeesUtil] = useState([]);
@@ -61,9 +67,9 @@ const Utilization = () => {
   ];
 
   return (
-    <div>
-      <h2>Utilization</h2>
-      <Box sx={{ maxWidth: 400, display: "flex", alignItems: "center" }}>
+    <div className={styles.utilWrapper}>
+      <h2>Utilization Table</h2>
+      <Box sx={{ minWidth: 600, display: "flex", alignItems: "center", gap: "4rem" }}>
         <FormControl fullWidth>
           <InputLabel id="department-filter-label">Department</InputLabel>
           <Select

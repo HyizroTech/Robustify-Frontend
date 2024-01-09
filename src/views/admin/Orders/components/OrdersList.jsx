@@ -3,10 +3,8 @@ import React, { useEffect, useState } from "react";
 // Services
 import { OrdersServices } from "../services/orders.service";
 
-// Componentns
+// Components
 import GeneralTable from "../../../../components/GeneralTable";
-
-import { OrderListColumns } from "../../../../constants/tableColumns.const";
 import {
   Select,
   InputLabel,
@@ -16,6 +14,12 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
+
+// Constant
+import { OrderListColumns } from "../../../../constants/tableColumns.const";
+
+// Styles
+import styles from "./OrdersList.module.css"
 
 const InProgressOptions = [
   "Design",
@@ -56,14 +60,14 @@ const OrdersList = () => {
   };
 
   return (
-    <div>
+    <div className={styles.ordersListWrapper}>
       <h2>Orders</h2>
       <Box
         sx={{
-          maxWidth: 600,
+          minWidth: 800,
           display: "flex",
           alignItems: "center",
-          justifyContent: "spaceBetween",
+          gap: "4rem"
         }}
       >
         <FormControlLabel
@@ -87,6 +91,7 @@ const OrdersList = () => {
             value={InProgressOptions.includes(filter) ? filter : ""}
             onChange={(e) => handleFilterChange(e.target.value, "select")}
           >
+            <MenuItem value={null}>None</MenuItem>
             <MenuItem value="Design">Design</MenuItem>
             <MenuItem value="Montage">Montage</MenuItem>
             <MenuItem value="Printing">Printing</MenuItem>
@@ -98,7 +103,7 @@ const OrdersList = () => {
           control={
             <Checkbox
               name="inTransit"
-              value="In Tranist"
+              value="In Transit"
               checked={filter === "In Transit"}
               onChange={() => handleFilterChange("In Transit", "checkbox")}
             />

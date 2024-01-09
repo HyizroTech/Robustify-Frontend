@@ -3,17 +3,30 @@
   flex-direction: column;
   background: #fff;
   width: auto;
-  min-width: 27%;
-  height: 25rem;
-  border-radius: 30px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  min-width: 30.625rem;
+  height: 35rem;
+  border-radius: 16px;
+  gap: 7rem;
 }
 
 .loginFormHead {
-  color: #7aa8ca;
   padding: 2.4rem 1rem 0 1rem;
   text-align: center;
-  font-family: "Inter";
+  font-family: "Archivo Narrow";
+}
+
+.loginFormHead > h2 {
+  color: #141e33;
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: 9px;
+}
+
+.loginFormHead > h3 {
+  color: #562875;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 2.5px;
 }
 
 .loginForm {
@@ -21,49 +34,40 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: auto 0;
-  gap: 1.7rem;
+  gap: 2rem;
 }
 
 .loginForm > button {
   width: auto;
-  min-width: 6.25rem;
-  height: 2rem;
+  min-width: 9rem;
+  height: 2.5rem;
   color: #fff;
   font-family: "Inter";
   font-size: 0.9375rem;
   font-weight: 400;
-  background: #223d58;
-  box-shadow: 0px 4px 4px 0px #223d58;
+  background: linear-gradient(344deg, #5e3781 -27.59%, #aac1e9 124.38%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
   border: transparent;
   border-radius: 30px;
-}
-
-.formInput {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.formInput > label {
-  color: #223d58;
-  font-family: "Inter";
-  font-size: 1rem;
-  font-weight: 700;
 }
 
 .formInput > input {
   width: auto;
   min-width: 15rem;
   height: 2.3rem;
-  padding: 1rem;
-  font-family: "Inter";
-  color: #fff;
-  background: linear-gradient(270deg, #a3c2e3 0%, #6c9ec1 100%);
+  font-family: "Archivo Narrow";
+  color: #000;
+  font-size: 1rem;
+  background: transparent;
   border: transparent;
-  border-radius: 30px;
+  border-bottom: 2px solid #000;
 }
 
 .formInput > input:focus {
   outline: none;
+}
+
+.formInput > input::placeholder {
+  color: #000;
+  font-size: 1rem;
 }

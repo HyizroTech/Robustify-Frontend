@@ -30,7 +30,7 @@ const OrderHistogram = () => {
   }, []);
 
   return (
-    <BarChart width={680} height={420} data={data}>
+    <BarChart width={600} height={300} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />
