@@ -8,7 +8,12 @@ const Operations = lazy(() =>
   import("../views/admin/Operations/operations.router")
 );
 const Orders = lazy(() => import("../views/admin/Orders/orders.router"));
-const CostOfQuality = lazy(()=> import("../views/admin/Quality/CostofQuality/CostofQuality.router"))
+const CostOfQuality = lazy(() =>
+  import("../views/admin/Quality/CostofQuality/CostofQuality.router")
+);
+const Inventory = lazy(() =>
+  import("../views/admin/Inventory/inventory.router")
+);
 
 export const AdminRoutes = [
   {
@@ -35,5 +40,10 @@ export const AdminRoutes = [
     path: "/admin/CostOfQuality/*",
     name: "Cost-of-Quality",
     component: CostOfQuality,
+  },
+  {
+    path: "/admin/inventory/*",
+    name: "Inventory",
+    component: Inventory,
   },
 ];

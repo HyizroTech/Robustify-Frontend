@@ -83,8 +83,16 @@ const SideBar = () => {
       text: "Inventory",
       icon: <InboxOutlined />,
       sublinks: [
-        { id: 1, text: "Stock", onclick: () => navigate("") },
-        { id: 2, text: "Purchase History", onclick: () => navigate("") },
+        {
+          id: 1,
+          text: "Stock",
+          onclick: () => navigate("/admin/inventory/stock"),
+        },
+        {
+          id: 2,
+          text: "Purchase History",
+          onclick: () => navigate("/admin/inventory/purchase-history"),
+        },
       ],
     },
     {
@@ -143,9 +151,9 @@ const SideBar = () => {
     <Drawer
       variant="permanent"
       sx={{
-        height: "100%",
+        height: "100vh",
         "& .MuiDrawer-paper": {
-          position: "static",
+          position: "fixed",
           background: "linear-gradient(180deg, #AABFE7 0%, #6F5697 100%);",
           alignItems: "center",
           paddingTop: "1rem",

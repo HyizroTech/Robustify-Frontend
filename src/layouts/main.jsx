@@ -7,7 +7,7 @@ import LoadingFallback from "../components/LoadingFallback";
 
 const MainLayout = ({ Component }) => {
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div style={{ display: "flex", height: "100vh", gap: "13rem" }}>
       <SideBar />
       <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
         <Navbar />

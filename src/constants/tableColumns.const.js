@@ -26,7 +26,7 @@ export const UpcomingPurchasesColumns = [
 ];
 
 export const PurchaseHistoryColumns = [
-  { id: "number", label: "ID", minWidth: 100 },
+  { id: "id", label: "ID", minWidth: 100 },
   { id: "item", label: "Item", minWidth: 100 },
   { id: "quantity", label: "Quantity", minWidth: 100 },
   { id: "purchaseDate", label: "Purchase Date", minWidth: 100 },

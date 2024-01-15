@@ -5,7 +5,7 @@ import { Notifications, AccountCircle } from "@mui/icons-material";
 const Navbar = () => {
   return (
     <AppBar
-      position="static"
+      position="sticky"
       sx={{
         background: "#DFE1ED",
         width: "100%",
